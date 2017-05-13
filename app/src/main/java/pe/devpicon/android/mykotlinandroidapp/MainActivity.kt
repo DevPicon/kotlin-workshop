@@ -5,10 +5,10 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainView {
 
     val myAdapter: MyAdapter by lazy { initializeAdapter() }
-    val anotherList = listOf("otro elemento 1", "otro elemento 2", "otro elemento 3", "otro elemento 4")
+    lateinit var presenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,18 +19,22 @@ class MainActivity : AppCompatActivity() {
 
         myRecyclerView.layoutManager = myLayoutManager
         myRecyclerView.adapter = myAdapter
+
+        presenter = MainPresenter(this)
     }
 
-    private fun initializeAdapter(): MyAdapter {
-        return MyAdapter()
-    }
+    private fun initializeAdapter(): MyAdapter = MyAdapter()
 
     override fun onResume() {
         super.onResume()
+
+        presenter.loadElements()
+    }
+
+    override fun showElements(anotherList: List<String>) {
         myAdapter.stringValues = anotherList
         myAdapter.notifyDataSetChanged()
     }
-
 }
 
 
