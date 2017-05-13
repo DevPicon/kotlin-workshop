@@ -1,5 +1,7 @@
 package pe.devpicon.android.mykotlinandroidapp;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,8 @@ import java.util.List;
  */
 
 public class MainPresenter {
+
+    public static final String TAG = MainPresenter.class.getSimpleName();
 
     private final MainView view;
     private List<PersonModel> personModelList = new ArrayList<>();
@@ -23,6 +27,8 @@ public class MainPresenter {
             personModel.setName("Persona " + (i + 1));
             personModel.setAge(30 + i);
             personModelList.add(personModel);
+
+            Log.d(TAG, personModel.toString());
         }
     }
 
