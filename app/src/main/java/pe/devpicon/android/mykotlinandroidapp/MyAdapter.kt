@@ -9,7 +9,10 @@ import android.widget.TextView
 /**
  * Created by armando on 5/12/17.
  */
-class MyAdapter(val stringValues: List<String>) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+class MyAdapter: RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+
+    lateinit var stringValues: List<String>
+
     override fun getItemCount(): Int {
         return stringValues.size
     }
@@ -33,4 +36,5 @@ class MyAdapter(val stringValues: List<String>) : RecyclerView.Adapter<MyAdapter
             txtItem.text = value
         }
     }
+
 }
