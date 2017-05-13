@@ -20,7 +20,16 @@ public class MainPresenter {
         this.view = view;
 
         PersonModel personModel = new PersonModel();
+        personModel.setPhoto("https://developers.google.com/experts/img/user/108111382928369311521.png");
         personModelList.add(personModel);
+        Log.d(TAG, personModel.toString());
+
+        personModel = new PersonModel();
+        personModel.setPhoto("https://developers.google.com/experts/img/user/102505523657824287245.jpg");
+        personModelList.add(personModel);
+        Log.d(TAG, personModel.toString());
+
+
 
         for (int i = 0; i < 10; i++) {
             personModel = new PersonModel();

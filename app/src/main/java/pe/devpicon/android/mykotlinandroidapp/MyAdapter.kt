@@ -4,7 +4,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import pe.devpicon.android.mykotlinandroidapp.utils.loadImage
 
 /**
  * Created by armando on 5/12/17.
@@ -32,11 +34,12 @@ class MyAdapter : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var txtItemName: TextView = itemView.findViewById(R.id.txt_item_name) as TextView
         var txtItemAge: TextView = itemView.findViewById(R.id.txt_item_age) as TextView
+        val imgPicture: ImageView = itemView.findViewById(R.id.img_photo) as ImageView
 
         fun bindPerson(value: PersonModel) {
-
             txtItemName.text = if (value.name != null) value.name else "Vacío"
             txtItemAge.text = value.age.toString()
+            imgPicture.loadImage(value.photo)
         }
     }
 
