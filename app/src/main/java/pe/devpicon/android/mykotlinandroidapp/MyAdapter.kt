@@ -9,12 +9,12 @@ import android.widget.TextView
 /**
  * Created by armando on 5/12/17.
  */
-class MyAdapter: RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+class MyAdapter : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
 
-    lateinit var stringValues: List<String>
+    lateinit var personModelList: List<PersonModel>
 
     override fun getItemCount(): Int {
-        return stringValues.size
+        return personModelList.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,16 +25,20 @@ class MyAdapter: RecyclerView.Adapter<MyAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindString(stringValues.get(position))
+        holder.bindPerson(personModelList.get(position))
     }
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var txtItem: TextView = itemView.findViewById(R.id.txt_item) as TextView
+        var txtItemName: TextView = itemView.findViewById(R.id.txt_item_name) as TextView
+        var txtItemAge: TextView = itemView.findViewById(R.id.txt_item_age) as TextView
 
-        fun bindString(value: String) {
-            txtItem.text = value
+        fun bindPerson(value: PersonModel) {
+
+            txtItemName.text = if (value.name != null) value.name else "Vacío"
+            txtItemAge.text = value.age.toString()
         }
     }
+
 
 }

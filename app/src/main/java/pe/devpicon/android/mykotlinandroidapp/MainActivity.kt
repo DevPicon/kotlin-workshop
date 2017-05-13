@@ -6,6 +6,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 
 class MainActivity : AppCompatActivity(), MainView {
+    override fun showPersons(personModelList: List<PersonModel>) {
+        myAdapter.personModelList = personModelList
+        myAdapter.notifyDataSetChanged()
+    }
 
     val myAdapter: MyAdapter by lazy { initializeAdapter() }
     lateinit var presenter: MainPresenter
@@ -27,13 +31,7 @@ class MainActivity : AppCompatActivity(), MainView {
 
     override fun onResume() {
         super.onResume()
-
         presenter.loadElements()
-    }
-
-    override fun showElements(anotherList: List<String>) {
-        myAdapter.stringValues = anotherList
-        myAdapter.notifyDataSetChanged()
     }
 }
 

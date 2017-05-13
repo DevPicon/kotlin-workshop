@@ -1,6 +1,6 @@
 package pe.devpicon.android.mykotlinandroidapp;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,14 +10,23 @@ import java.util.List;
 public class MainPresenter {
 
     private final MainView view;
-
-    private List<String> anotherList = Arrays.asList("otro elemento 1", "otro elemento 2", "otro elemento 3", "otro elemento 4");
+    private List<PersonModel> personModelList = new ArrayList<>();
 
     public MainPresenter(MainView view) {
         this.view = view;
+
+        PersonModel personModel = new PersonModel();
+        personModelList.add(personModel);
+
+        for (int i = 0; i < 10; i++) {
+            personModel = new PersonModel();
+            personModel.setName("Persona " + (i + 1));
+            personModel.setAge(30 + i);
+            personModelList.add(personModel);
+        }
     }
 
     public void loadElements() {
-        view.showElements(anotherList);
+        view.showPersons(personModelList);
     }
 }
